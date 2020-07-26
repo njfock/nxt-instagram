@@ -7,7 +7,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Intro/>
+      <Intro text='Nestor Fock'/>
+      <Intro text='Nexthor'/>
     </div>
   );
 }

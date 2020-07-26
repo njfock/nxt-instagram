@@ -1,10 +1,15 @@
 import React from 'react';
 
-export default class Intro extends React.Component{
+interface IIntroProps{
+    text: string
+}
+
+export default class Intro extends React.Component<IIntroProps>{
     public render(){
+        const { text } = this.props
         return(
             <div className="App-intro">
-                <span>Nexthor</span>
+                <span>{text}</span>
             </div>
         )
     }
