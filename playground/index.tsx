@@ -9,3 +9,6 @@ class ClassPrueba implements IPrueba {
         return 1
     }
 }
+
+const x: number = 1
+let y: string = 'nexthor'
