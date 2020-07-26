@@ -13,13 +13,19 @@ export default class Intro extends React.Component<IIntroProps,IIntroState>{
         dato: 1,
         text: 'Hola Mundo!'
     }
+
     public render(){
         let { text } = this.props
         text = text? text : this.state.text
         return(
-            <div className="App-intro">
+            <p onClick={this.handleClick} className="App-intro">
                 <span>{text}</span>
-            </div>
+            </p>
         )
     }
+
+    private handleClick = () => {
+        this.setState({ text: 'Me actualice!'})
+    }
+
 }
