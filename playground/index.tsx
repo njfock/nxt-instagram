@@ -1,14 +1,14 @@
-interface IPrueba {
-    texto: string
-    met(x: string): number
+interface IPrueba<T>{
+    data: T
 }
 
-class ClassPrueba implements IPrueba {
-    public texto = 'Texto!'
-    public met(x: string){
-        return 1
-    }
+interface IData<T>{
+    name: string
+    email: T
 }
 
-const x: number = 1
-let y: string = 'nexthor'
+type UserState = IPrueba<IData<string>>
+
+const x: UserState
+
+x.data.email
