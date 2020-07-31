@@ -3,6 +3,7 @@ import './App.css';
 import Card from './components/Card'
 import Container from './components/Container'
 import Input from './components/Input'
+import Button from './components/Button'
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <Card>
               <Input placeholder='Correo' label='Correo'/>
               <Input placeholder='Contraseña' label='Contraseña'/>
+              <Button>Enviar</Button>
             </Card>
         </Container>
     );
