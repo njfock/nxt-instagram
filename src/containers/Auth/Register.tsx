@@ -12,11 +12,11 @@ export default class Login extends React.Component {
         return (
             <Container>
                 <Card>
-                    <Title>Iniciar sesión</Title>
+                    <Title>Registro</Title>
                     <Input placeholder='Correo' label='Correo'/>
                     <Input placeholder='Contraseña' label='Contraseña'/>
                     <Button block={true}>Enviar</Button>
-                    <Center><Link to='/register'>Ir al Registro</Link></Center>
+                    <Center><Link to='/'>Iniciar sesion</Link></Center>
                 </Card>
             </Container>
         )
