@@ -6,6 +6,7 @@ const style = (block: boolean) => ({
    borderRadius: '4px',
    padding: '10px 15px',
    color: '#fff',
+   marginBottom: '10px',
    fontWeight: 900,
    width: block ? '100%' : undefined
 })
