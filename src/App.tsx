@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
 import Card from './components/Card'
+import Container from './components/Container'
 
 function App() {
-  return (
-    <Card>lALA</Card>
-  );
+    return (
+        <Container>
+            <Card>lALA</Card>
+        </Container>
+    );
 }
 
 export default App;
