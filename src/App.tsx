@@ -22,8 +22,6 @@ class App extends React.Component<IApp>{
     public componentDidMount(){
         const { auth } = services
         auth.onAuthStateChanged(user => {
-            console.log('window.location.pathname')
-            console.log(window.location.pathname)
             if(user){
                 if(['/','/register'].indexOf(window.location.pathname)> -1){
                     const { history } = this.props

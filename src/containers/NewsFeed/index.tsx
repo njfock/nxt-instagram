@@ -9,6 +9,8 @@ import * as postDuck from '../../ducks/Posts'
 
 interface INewsFeedProps{
     fetchPosts: () => void
+    like: (a: string) => void
+    share: (a: string) => void
     fetched: boolean
     loading: boolean
     data:postDuck.IDataPosts
@@ -22,22 +24,39 @@ class NewsFeed extends React.Component<INewsFeedProps> {
         }
         fetchPosts()
     }
+    
     public render(){
-        //const { data } = this.props
+        const { data } = this.props
         return(
             <Container>
-                <div style={{ margin: '0 auto'}}><Post image={'http://placekitten.com/300/200'}/></div>
-                <div style={{ margin: '0 auto'}}><Post image={'http://placekitten.com/300/200'}/></div>
+                {
+                    Object.keys(data).map(x => {
+                        const post = data[x]
+                        console.log(post)
+                        return <div key={x} style={{ margin: '0 auto'}}>
+                                    <Post like={this.handleLike(x)} share={this.handleShare(x)}  image={post.imageURL}/>
+                                </div>
+                    })   
+                }
                 
             </Container>
             
         )
     }
+    private handleLike = (id:string) => () =>{
+        const { like } = this.props
+        like(id)
+    }
+    private handleShare = (id:string) => () =>{
+        const { share } = this.props
+        share(id)
+    }
 }
 const mapStateToProps = (state: any) => {
-    const { Posts: {  fetched, fetching }} = state
+    const { Posts: { data, fetched, fetching }} = state
     const loading = fetching || !fetched
     return {
+        data,
         fetched,
         loading
     }

@@ -73,12 +73,23 @@ export const fetchPosts = () =>
             }))
             const keyedImages : any = {}
             imgIds.forEach(x =>  keyedImages[x[0]] = x[1])
-            dispatch(fetchSuccess(posts))
             Object.keys(posts).forEach(x => posts[x] = {
                 ...posts[x],
                 imageURL: keyedImages[x]
             })
+            dispatch(fetchSuccess(posts))
+            
         }catch(e){
             dispatch(fetchError(e))
         }
+    }
+
+export const like = (id: string) =>
+    async (dispatch: Dispatch, getState: ()=> any, {}: IServices)=>{
+        console.log('like',id)
+    }
+
+export const share = (id: string) =>
+    async (dispatch: Dispatch, getState: ()=> any, {}: IServices)=>{
+        console.log('share',id)
     }

@@ -22,14 +22,11 @@ const store = createStore(combineReducers({
 
 const history = createBrowserHistory()
 ReactDOM.render(
-    <React.StrictMode>
         <Provider store={store}>
             <Router history={history}>
                 <App history={history}/>
             </Router>
-        </Provider>
-        
-    </React.StrictMode>,
+        </Provider>,
     document.getElementById('root')
 );
 
