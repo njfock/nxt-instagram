@@ -8,11 +8,9 @@ import Title from '../../components/Title'
 import LoginForm from '../../components/LoginForm'
 import { ILogin, login as loginThunk } from '../../ducks/Users'
 
-
 interface ILoginProps {
     login: (a: ILogin)=>void
 }
-
 class Login extends React.Component<ILoginProps> {
     public render(){
         const { login } = this.props
@@ -21,7 +19,6 @@ class Login extends React.Component<ILoginProps> {
                 <Card>
                     <Title>Iniciar sesión</Title>
                     <LoginForm onSubmit={login}/>
-                    
                 </Card>
             </Container>
         )

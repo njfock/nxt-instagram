@@ -1,15 +1,18 @@
-import React from 'react';
 import './App.css';
+
+import React from 'react';
 import { Route } from 'react-router'
+
+import { History } from 'history'
+import Navbar from './components/Navbar'
 import Login from './containers/Auth/Login'
 import Register from './containers/Auth/Register'
 import NewsFeed from './containers/NewsFeed'
 import Profile from './containers/Profile'
-import Navbar from './components/Navbar'
 import services from './services'
 
 interface IApp {
-    history: any
+    history: History
 }
 
 class App extends React.Component<IApp>{

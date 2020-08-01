@@ -6,6 +6,11 @@ export interface ILogin {
     password: string
 }
 
+export interface IRegister {
+    email: string
+    password: string
+}
+
 export default function reducer(state={}){
     return state
 }
@@ -13,4 +18,9 @@ export default function reducer(state={}){
 export const login = ({email, password}: ILogin) =>
     async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
         await auth.signInWithEmailAndPassword(email, password)
+    }
+
+export const register = ({email, password}: IRegister) =>
+    async (dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
+        await auth.createUserWithEmailAndPassword(email, password)
     }
