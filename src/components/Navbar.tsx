@@ -20,7 +20,7 @@ export default class Navbar extends React.Component {
         return(
             <div style={style.navbar}>
                 <Link to='/app/newsfeed' style={style.link}>
-                    <FontAwesomeIcon icon={faNewspaper} /> NXT Instacool
+                    <FontAwesomeIcon icon={faNewspaper} /> NXT Instagram
                 </Link>
                 <div style={{float: 'right'}}>
                     <Link to='/app/profile' style={style.link}> 
