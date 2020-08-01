@@ -35,7 +35,11 @@ class NewsFeed extends React.Component<INewsFeedProps> {
     }
 }
 const mapStateToProps = (state: any) => {
+    const { Posts: {  fetched, fetching }} = state
+    const loading = fetching || !fetched
     return {
+        fetched,
+        loading
     }
 }
 
