@@ -1,6 +1,7 @@
 import './index.css';
 
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from "history";
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -19,8 +20,7 @@ const store = createStore(combineReducers({
     form: formReducer,
 }), applyMiddleware(thunk.withExtraArgument(services)))
 
-const history = createHistory()
-
+const history = createBrowserHistory()
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>

@@ -5,8 +5,8 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import Button from './Button'
 import Center from './Center'
 import Input from './Input'
-
-class LoginForm extends React.Component<InjectedFormProps>{
+import { ILogin } from '../ducks/Users'
+class LoginForm extends React.Component<InjectedFormProps<ILogin>>{
     public render(){
         const { handleSubmit } = this.props
         return(
@@ -22,6 +22,6 @@ class LoginForm extends React.Component<InjectedFormProps>{
     }
 }
 
-export default reduxForm<any, any>({
+export default reduxForm<ILogin>({
     form: 'login',
 })(LoginForm)
