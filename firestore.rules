@@ -4,7 +4,7 @@ service cloud.firestore {
       allow write: if request.resource.data.role == 'user';
     }
     match /posts/{posts} {
-      allow list: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
     }
   }
 }

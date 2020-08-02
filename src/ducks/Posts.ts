@@ -1,10 +1,11 @@
 import { Dispatch, AnyAction } from "redux"
 import { IServices } from "../services"
-import { firestore } from 'firebase'
-
+import { firestore, storage } from 'firebase'
+import { download } from "../utils"
 const START = 'posts/fetch-start'
 const SUCCESS = 'posts/fetch-success'
 const ERROR = 'posts/fetch-error'
+const ADD = 'posts/add'
 
 export interface IDataPosts {
     [key: string]:{
@@ -29,6 +30,11 @@ const fetchError = (error: Error) => ({
     error
 })
 
+const add = (payload: IDataPosts) => ({
+    payload,
+    type: ADD,
+})
+
 const initialState = {
     data: {},
     fetched: false,
@@ -51,6 +57,14 @@ export default function reducer(state = initialState, action: AnyAction ) {
             return {
                 ...state,
                 error: action.error,
+            }
+        case ADD:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    ...action.payload, 
+                },
             }
         default:
             return state
@@ -90,16 +104,35 @@ export const like = (id: string) =>
             return
         }
         const token = await auth.currentUser.getIdToken()
-        const result = await fetch('/api/posts', {
+        await fetch(`/api/posts/${id}/like`, {
             headers:{
                 authorization: token
             }
         })
-        const text = await result.text()
-        console.log(text)
     }
 
 export const share = (id: string) =>
-    async (dispatch: Dispatch, getState: ()=> any, {}: IServices)=>{
-        console.log('share',id)
+    async (dispatch: Dispatch, getState: ()=> any, { auth, db, storage }: IServices)=>{
+        if(!auth.currentUser){
+            return
+        }
+        const token = await auth.currentUser.getIdToken()
+        const result = await fetch(`/api/posts/${id}/share`, {
+            headers:{
+                authorization: token
+            }
+        })
+        const url = await storage.ref(`posts/${id}.jpg`).getDownloadURL()
+        const blob = await download(url)
+        const { id: postId }: {id: string} = await result.json()
+        const ref = storage.ref(`posts/${postId}.jpg`)
+        if (blob instanceof Blob){
+            await ref.put(blob)
+        }
+        const imageURL = await ref.getDownloadURL()
+        const snap = await db.collection('posts').doc(postId).get()
+        dispatch(add({ [snap.id]: {
+            ...snap.data(),
+            imageURL,
+        } } as IDataPosts))
     }
